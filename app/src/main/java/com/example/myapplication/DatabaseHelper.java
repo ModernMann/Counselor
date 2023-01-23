@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -12,12 +13,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private static String DB_NAME = "Counselor.db";
+    public static String DB_NAME = "Counselor.db";
     private static String DB_PATH = "";
     private static final int DB_VERSION = 1;
 
     private SQLiteDatabase mDataBase;
-    private final Context mContext;
+    private Context mContext;
     private boolean mNeedUpdate = false;
 
     public DatabaseHelper(Context context) {
@@ -32,6 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         this.getReadableDatabase();
     }
+
 
     public void updateDataBase() throws IOException {
         if (mNeedUpdate) {
